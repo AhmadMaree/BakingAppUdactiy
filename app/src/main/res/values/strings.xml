@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">BakingApp</string>
+    <string name="Survising">Serving:</string>
+    <string name="Description">Description</string>
+    <string name="Baking_recipes">Recipes</string>
+    <string name="steps">Steps</string>
+    <string name="widget_text">Deatils</string>
+    <string name="add_widget">Add widget</string>
+</resources>

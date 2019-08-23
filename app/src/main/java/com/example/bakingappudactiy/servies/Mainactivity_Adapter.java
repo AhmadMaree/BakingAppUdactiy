@@ -67,10 +67,7 @@ public class Mainactivity_Adapter extends RecyclerView.Adapter<Mainactivity_Adap
 
     @Override
     public int getItemCount() {
-        if(recipes == null){
-            return 0;
-        }
-        return recipes.size();
+        return (recipes !=null)? recipes.size(): 0 ;
     }
 
 

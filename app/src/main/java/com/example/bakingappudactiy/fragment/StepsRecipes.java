@@ -34,12 +34,8 @@ public class StepsRecipes extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.recipes_deatils_list);
-
-
-
         ingredients=findViewById(R.id.recipe_details_ingredients);
         Intent intent = getIntent();
-
         data="";
 
         data +="Ingredients list :\n";
@@ -65,13 +61,6 @@ public class StepsRecipes extends AppCompatActivity {
             recyclerView.setAdapter(adapter_list_steps);
             recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
             recyclerView.setHasFixedSize(true);
-
-
         }
-
-
-
-
-
     }
 }

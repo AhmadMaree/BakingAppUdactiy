@@ -14,24 +14,15 @@ import org.junit.runner.RunWith;
 
 
 @RunWith(AndroidJUnit4.class)
-public class RecViewTest {
+public class MainActivityTest {
 
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule =new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void positiontest() {
-        Espresso.onView(ViewMatchers.withId(R.id.rec_view))
-                .perform(RecyclerViewActions.actionOnItemAtPosition(1, ViewActions.click()));
+    public void  mainActivityTest() {
+
     }
-
-
-
-
-
-
-
-
 
 }

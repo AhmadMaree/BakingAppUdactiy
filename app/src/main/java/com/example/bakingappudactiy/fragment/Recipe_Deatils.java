@@ -29,11 +29,16 @@ public class Recipe_Deatils extends AppCompatActivity
                     .commit();
         }
 
+    }
 
-
-
-
-
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == android.R.id.home) {
+            navigateUpTo(new Intent(this, StepsRecipes.class));
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

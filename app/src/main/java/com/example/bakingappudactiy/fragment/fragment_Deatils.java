@@ -26,6 +26,7 @@ import com.google.android.exoplayer2.trackselection.DefaultTrackSelector;
 import com.google.android.exoplayer2.trackselection.TrackSelector;
 import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
+import com.google.android.exoplayer2.util.Util;
 
 import java.util.ArrayList;
 
@@ -39,10 +40,11 @@ public class fragment_Deatils extends Fragment {
     SimpleExoPlayer simpleExoPlayer;
     ArrayList<StepsBaking> stepsBakings;
     int pos_view;
+    private Context context;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+
+    public fragment_Deatils(){
+
     }
 
     @Nullable
@@ -54,7 +56,7 @@ public class fragment_Deatils extends Fragment {
             desc= view.findViewById(R.id.step_description);
            long position=0;
            boolean state = true;
-        Context context= container.getContext();
+          context= container.getContext();
 
 
         if(getArguments().containsKey("steps")){
@@ -67,29 +69,28 @@ public class fragment_Deatils extends Fragment {
                     position=savedInstanceState.getLong("pos");
                     state=savedInstanceState.getBoolean("states");
                 }
-
-
-                if(simpleExoPlayer == null){
-                    TrackSelector selector = new DefaultTrackSelector();
-                    LoadControl control = new DefaultLoadControl();
-                    simpleExoPlayer= ExoPlayerFactory.newSimpleInstance(context,selector,control);
-                    simpleExoPlayerView.setPlayer(simpleExoPlayer);
-                    String s = getUserAgent(context,"BakingApp");
-                    MediaSource mediaSource= new ExtractorMediaSource(viduouri,new DefaultDataSourceFactory(context,s)
-                     ,new DefaultExtractorsFactory(),null,null);
-                    simpleExoPlayer.prepare(mediaSource);
-                    simpleExoPlayer.seekTo(position);
-                    simpleExoPlayer.setPlayWhenReady(state);
-                }
-                    desc.setText(stepsBakings.get(pos_view).getmDescription());
-
+            initializePlayer(position, state, context, viduouri);
+            desc.setText(stepsBakings.get(pos_view).getmDescription());
 
             }
             return view;
 
     }
 
-
+    public void initializePlayer(long position, boolean state, Context context, Uri viduouri) {
+        if(simpleExoPlayer == null){
+            TrackSelector selector = new DefaultTrackSelector();
+            LoadControl control = new DefaultLoadControl();
+            simpleExoPlayer= ExoPlayerFactory.newSimpleInstance(context,selector,control);
+            simpleExoPlayerView.setPlayer(simpleExoPlayer);
+            String s = getUserAgent(context,"BakingApp");
+            MediaSource mediaSource= new ExtractorMediaSource(viduouri,new DefaultDataSourceFactory(context,s)
+             ,new DefaultExtractorsFactory(),null,null);
+            simpleExoPlayer.prepare(mediaSource);
+            simpleExoPlayer.seekTo(position);
+            simpleExoPlayer.setPlayWhenReady(state);
+        }
+    }
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
@@ -98,17 +99,18 @@ public class fragment_Deatils extends Fragment {
             outState.putBoolean("states",simpleExoPlayer.getPlayWhenReady());
 
     }
-
-
     @Override
-    public void onDestroy() {
-        super.onDestroy();
-        relaseExoplayer();
+    public void onStop() {
+        super.onStop();
+        if (Util.SDK_INT > 23) {
+            relaseExoplayer();
+        }
     }
-
     private void relaseExoplayer() {
         simpleExoPlayer.stop();
         simpleExoPlayer.release();
         simpleExoPlayer=null;
     }
+
+
 }

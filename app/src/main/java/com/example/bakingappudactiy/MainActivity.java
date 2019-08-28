@@ -31,25 +31,18 @@ public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView ;
     Mainactivity_Adapter myAdapter;
     List<Baking> baking;
-    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         baking=new ArrayList<>();
-        progressBar=findViewById(R.id.indeterminateBar);
 
         recyclerView = findViewById(R.id.rec_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         myAdapter = new Mainactivity_Adapter(MainActivity.this, baking);
         recyclerView.setAdapter(myAdapter);
         recyclerView.setHasFixedSize(true);
-
-
-
-
-        progressBar.setVisibility(View.VISIBLE);
         Fetch_Data();
     }
 
@@ -72,8 +65,6 @@ public class MainActivity extends AppCompatActivity {
                     recyclerView.setAdapter(myAdapter);
                     recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                     recyclerView.setHasFixedSize(true);
-                    recyclerView.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.INVISIBLE);
 
 
 

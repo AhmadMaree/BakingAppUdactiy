@@ -38,6 +38,7 @@
                 android:resource="@xml/new_app_widget_info" />
         </receiver>
         <service android:name=".widget.WidgetHelper"/>
+
     </application>
 
 </manifest>

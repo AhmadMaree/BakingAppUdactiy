@@ -1,30 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/LightSteelBlue">
-
+    android:background="@color/LightSteelBlue"
+    android:padding="@dimen/widget_margin">
 
     <TextView
+        android:id="@+id/tv_widget_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/text_widget"
-        android:layout_margin="10dp"
-        android:text="@string/widget_text"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        android:textColor="@color/black"
-        android:contentDescription="@string/widget_text"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="8dp"
         android:background="@color/LightSteelBlue"
-        />
+        android:textColor="@color/black"
+        android:textSize="24sp"
+        android:textStyle="bold|italic"
+        tools:text="@string/dummy_widget_recipe_title" />
 
-
-
-
-
-
-
-
-
+    <TextView
+        android:id="@+id/tv_widget_ingredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        android:background="@color/LightSteelBlue"
+        android:textColor="@color/black"
+        android:textSize="12sp"
+        tools:text="@string/dummy_widget_ingredients" />
 
 </LinearLayout>

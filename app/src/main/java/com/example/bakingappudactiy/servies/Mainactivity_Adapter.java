@@ -104,7 +104,7 @@ public class Mainactivity_Adapter extends RecyclerView.Adapter<Mainactivity_Adap
 
                         widgethelper.setData(Uri.parse(TextUtils.join("\n",recipes.get(position).getmIngredients())));
                         Log.e("show", "onClick: "+Uri.parse(TextUtils.join("\n",recipes.get(position).getmIngredients())));
-
+                        widgethelper.putExtra("title",recipes.get(position).getmName());
                         context.startActivity(intent);
                         context.startService(widgethelper);
                     }

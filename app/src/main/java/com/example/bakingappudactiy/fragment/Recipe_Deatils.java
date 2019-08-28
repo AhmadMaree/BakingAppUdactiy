@@ -8,27 +8,30 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.bakingappudactiy.R;
+import com.example.bakingappudactiy.servies.StepsBaking;
+
+import java.util.ArrayList;
 
 public class Recipe_Deatils extends AppCompatActivity
 {
 
-
+    int pos;
+    ArrayList <StepsBaking> stepsBakings;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.deatils_list_steps);
 
-        if(savedInstanceState ==null){
-            Bundle bundle=new Bundle();
-            bundle.putInt("position",getIntent().getIntExtra("position",0));
-            bundle.putParcelableArrayList("steps",getIntent().getParcelableArrayListExtra("steps"));
-            fragment_Deatils fragment=new fragment_Deatils();
+        if (savedInstanceState == null) {
+            Bundle bundle = new Bundle();
+            bundle.putInt("position", getIntent().getIntExtra("position", 0));
+            bundle.putParcelableArrayList("steps", getIntent().getParcelableArrayListExtra("steps"));
+            fragment_Deatils fragment = new fragment_Deatils();
             fragment.setArguments(bundle);
             getSupportFragmentManager().beginTransaction()
-                    .replace(R.id.continer,fragment)
+                    .replace(R.id.continer, fragment)
                     .commit();
         }
-
     }
 
     @Override
